@@ -710,3 +710,16 @@
     max-width: 100%;
   }
 }
+
+/* 手机端：下拉/按钮占满一行，避免「上下文预算」这类长选项被裁切 */
+@media not all and (min-width: 768px) {
+  .cardActions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .cardActions > * {
+    max-width: 100%;
+  }
+}

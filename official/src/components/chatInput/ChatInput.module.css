@@ -330,3 +330,24 @@
     cursor: not-allowed;
   }
 }
+
+/* 联网搜索开启时：地球缓慢自转（对应官方网页的联网动效） */
+.globeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchActive .globeIcon svg {
+  animation: globeSpin 6s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes globeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

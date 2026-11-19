@@ -794,6 +794,7 @@ const CharacterSettings = () => {
   const groupContinuousOn = useSettings((state) => state.groupContinuous)
   const groupMultiOn = useSettings((state) => state.groupMultiPerTurn)
   const groupReplyLength = useSettings((state) => state.groupReplyLength)
+  const [showAdvanced, setShowAdvanced] = useState(false)
   const cardFileRef = useRef<HTMLInputElement>(null)
   const card = cards.find((item) => item.id === activeId) ?? cards[0]
   const update = (patch: Parameters<typeof updateCharacter>[1]) => {
@@ -1058,6 +1059,22 @@ const CharacterSettings = () => {
           onChange={(event) => update({ greeting: event.target.value })}
         />
       </div>
+      <SettingCell
+        label={t('characterAdvancedLabel')}
+        description={t('characterAdvancedDescription')}
+        status={null}
+        action={
+          <Button
+            variant="outlined"
+            size="m"
+            onClick={() => setShowAdvanced((value) => !value)}
+          >
+            {showAdvanced ? t('collapseAdvanced') : t('expandAdvanced')}
+          </Button>
+        }
+      />
+      {showAdvanced ? (
+        <>
       <div className={styles.promptBlock}>
         <div className={styles.label}>{t('characterAlternatesLabel')}</div>
         <textarea
@@ -1303,6 +1320,8 @@ const CharacterSettings = () => {
           </Button>
         </div>
       </div>
+        </>
+      ) : null}
     </>
   )
 }

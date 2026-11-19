@@ -1,0 +1,8 @@
+{
+  "appId": "com.xiaofeiyu.app",
+  "appName": "小肥鱼",
+  "webDir": "official/dist",
+  "android": {
+    "allowMixedContent": true
+  }
+}

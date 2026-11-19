@@ -212,6 +212,11 @@ export const en = {
   cardExport: 'Export current card',
   cardImported: 'Imported character card "{name}"',
   cardImportFailed: 'Card import failed: {message}',
+  characterAdvancedLabel: 'Advanced settings',
+  characterAdvancedDescription:
+    'Alternate greetings, scenario, example dialogue, memory, world book and extra instructions. Expand when needed.',
+  expandAdvanced: 'Show advanced',
+  collapseAdvanced: 'Hide advanced',
   characterAlternatesLabel: 'Alternate greetings',
   characterAlternatesDescription:
     'One per line. A new chat randomly picks one from the main greeting and these.',

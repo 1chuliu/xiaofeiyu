@@ -229,12 +229,14 @@ const Input = ({ sessionId }: { sessionId: string | null }) => {
           <Tooltip content={t('deactivatedSearchTooltip')}>
             <button
               type="button"
-              className={clsx(styles.toggle, search && styles.selected)}
+              className={clsx(styles.toggle, search && styles.selected, search && styles.searchActive)}
               aria-label={t('search')}
               aria-pressed={search}
               onClick={() => setSearch(!search)}
             >
-              <IconGlobeLanguageOutline14 />
+              <span className={styles.globeIcon}>
+                <IconGlobeLanguageOutline14 />
+              </span>
               <span className={styles.toggleLabel}>{t('search')}</span>
             </button>
           </Tooltip>
