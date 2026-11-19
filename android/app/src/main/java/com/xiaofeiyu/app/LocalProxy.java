@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.util.Log;
+
 /**
  * App 内嵌本地代理：WebView 的跨域请求先发到 127.0.0.1:8788，
  * 由这里转发到真实 API（流式透传 + 补 CORS 头），解决 WebView 里第三方接口的 CORS 限制。
@@ -100,6 +102,7 @@ public final class LocalProxy {
 
       byte[] body = readBody(input, headers);
       String target = resolveTarget(path, headers);
+      Log.d("XFYProxy", method + " " + path + " -> " + target);
       if (target == null) {
         writeJsonError(client, 400, "缺少目标地址（X-DS-Target / X-DS-Base）");
         return;
@@ -165,6 +168,7 @@ public final class LocalProxy {
     }
 
     int status;
+    Log.d("XFYProxy", "forwarding " + method + " " + target);
     try {
       status = connection.getResponseCode();
     } catch (IOException error) {
@@ -184,6 +188,7 @@ public final class LocalProxy {
     head.append("Access-Control-Allow-Headers: *\r\n");
     head.append("Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n");
     head.append("Access-Control-Expose-Headers: *\r\n");
+    head.append("Access-Control-Allow-Private-Network: true\r\n");
     head.append("Cache-Control: no-cache\r\n");
     head.append("Transfer-Encoding: chunked\r\n");
     head.append("Connection: close\r\n\r\n");
@@ -213,6 +218,7 @@ public final class LocalProxy {
         + "Access-Control-Allow-Origin: *\r\n"
         + "Access-Control-Allow-Headers: authorization,content-type,x-ds-target,x-ds-base,x-api-key,anthropic-version,accept\r\n"
         + "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+        + "Access-Control-Allow-Private-Network: true\r\n"
         + "Access-Control-Max-Age: 600\r\n"
         + "Content-Length: 0\r\n"
         + "Connection: close\r\n\r\n";

@@ -151,8 +151,10 @@ export const verifyApiKey = async (apiKey: string, signal?: AbortSignal): Promis
   const base = String(apiBase || '').replace(/\/+$/, '')
   if (apiProxy) {
     const headers: Record<string, string> = { Authorization: `Bearer ${apiKey}` }
-    if (base) {
-      headers['X-DS-Base'] = base
+    // 代理只会在 X-DS-Base 后拼 /models：Anthropic 自定义地址要补上 /v1，否则会 404
+    const versioned = apiProtocol === 'anthropic' ? anthropicBaseUrl() : base
+    if (versioned) {
+      headers['X-DS-Base'] = versioned
     }
     await request('/api/models', { method: 'GET', headers, signal })
     return
