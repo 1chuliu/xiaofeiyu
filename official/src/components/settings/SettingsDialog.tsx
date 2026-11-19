@@ -434,6 +434,7 @@ const SupportQrSetting = ({
   const t = useTranslate()
   const fileRef = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
+  const [failed, setFailed] = useState(false)
 
   const pick = async (file: File | undefined) => {
     if (!file) {
@@ -461,8 +462,14 @@ const SupportQrSetting = ({
       status={null}
       action={
         <div className={styles.cardActions}>
-          {value || fallback ? (
-            <img className={styles.backgroundPreview} src={value || fallback} alt="" />
+          {value || (fallback && !failed) ? (
+            <img
+              key={value || fallback}
+              className={styles.backgroundPreview}
+              src={value || fallback}
+              alt=""
+              onError={() => setFailed(true)}
+            />
           ) : (
             <div className={styles.qrPlaceholder}>{t('supportNoImage')}</div>
           )}
@@ -548,12 +555,14 @@ const AboutSettings = () => {
         label={t('supportWechatLabel')}
         description={t('supportWechatDescription')}
         value={supportTipCode}
+        fallback="/support/wechat.png"
         onChange={setSupportTipCode}
       />
       <SupportQrSetting
         label={t('supportAlipayLabel')}
         description={t('supportAlipayDescription')}
         value={supportTipCodeAlipay}
+        fallback="/support/alipay.png"
         onChange={setSupportTipCodeAlipay}
       />
       <div className={styles.description} style={{ marginTop: 8 }}>
