@@ -119,6 +119,7 @@ export const zh = {
   supportNameNote: '二维码上的姓名/昵称来自你的收款码本身，不是本应用添加的。',
   supportLinkLabel: '支持链接（可选）',
   supportLinkHint: '没有爱发电账号也可以：链接留空，只上传赞赏码就行',
+  supportOpenLink: '打开支持页面',
   supportLinkPlaceholder: 'https://afdian.com/a/你的主页（可选）',
   supportCodeUpdated: '赞赏码已更新',
   supportCodeFailed: '上传失败：{message}',

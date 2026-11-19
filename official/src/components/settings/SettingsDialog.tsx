@@ -574,6 +574,17 @@ const AboutSettings = () => {
             </a>
           </div>
         ) : null}
+        {effectiveSupportLink ? (
+          <div className={styles.cardActions} style={{ marginTop: 8 }}>
+            <Button
+              variant="primary"
+              size="m"
+              onClick={() => window.open(effectiveSupportLink, '_blank', 'noopener,noreferrer')}
+            >
+              {t('supportOpenLink')}
+            </Button>
+          </div>
+        ) : null}
         <div className={styles.description}>{t('supportLinkHint')}</div>
         <div className={styles.description}>{SUPPORT_NOTE}</div>
       </div>

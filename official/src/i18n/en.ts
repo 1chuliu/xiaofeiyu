@@ -129,6 +129,7 @@ export const en = {
     'The name on the QR code comes from your own payment code, not from this app.',
   supportLinkLabel: 'Support link (optional)',
   supportLinkHint: 'No Afdian account? Leave the link empty; the tip QR code alone is enough.',
+  supportOpenLink: 'Open support page',
   supportLinkPlaceholder: 'https://afdian.com/a/your-page (optional)',
   supportCodeUpdated: 'Tip code updated',
   supportCodeFailed: 'Upload failed: {message}',
