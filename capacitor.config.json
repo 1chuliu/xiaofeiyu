@@ -2,6 +2,9 @@
   "appId": "com.xiaofeiyu.app",
   "appName": "小肥鱼",
   "webDir": "official/dist",
+  "server": {
+    "androidScheme": "http"
+  },
   "android": {
     "allowMixedContent": true
   }
