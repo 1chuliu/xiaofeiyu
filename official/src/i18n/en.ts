@@ -421,6 +421,10 @@ export const en = {
   cycleGreetingTooltip: 'Cycle through the card alternate greetings (locked after you send a message).',
   deactivatedSearchTooltip: 'Search the web when necessary',
   search: 'Search',
+  searchUnsupportedTooltip:
+    'Web search is a DeepSeek server-side tool and is not available on third-party endpoints.',
+  searchUnsupportedToast:
+    'Current endpoint is third-party; the official web-search tool is unavailable. Switch to the official API to use it.',
   uploadFile: 'Upload files',
   chatInputStopButtonTooltip: 'Stop',
   uploadMaxMBSize: 'File exceeds the size limit ({size} MB). Please adjust and try again.',

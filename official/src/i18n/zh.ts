@@ -379,6 +379,8 @@ export const zh = {
   cycleGreetingTooltip: '在角色卡的备选开场白之间切换（发送消息后不可再换）',
   deactivatedSearchTooltip: '按需搜索网页',
   search: '智能搜索',
+  searchUnsupportedTooltip: '联网搜索是 DeepSeek 官方服务端工具，第三方接口不支持',
+  searchUnsupportedToast: '当前是第三方接口，官方联网工具不可用；切换官方 API 后可用',
   uploadFile: '上传文件',
   chatInputStopButtonTooltip: '停止生成',
   uploadMaxMBSize: '单个文件大小超过限制（{size}MB），请调整后重试',

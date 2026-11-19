@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { memo, useCallback, useEffect, useLayoutEffect, useRef } from 'react'
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   IconGlobeLanguageOutline14,
   IconPaperclipOutline16,
@@ -65,6 +65,11 @@ const Input = ({ sessionId }: { sessionId: string | null }) => {
   })
   const isMobile = useIsMobile()
   const search = useSettings((state) => state.search)
+  const apiBase = useSettings((state) => state.apiBase)
+  const apiProtocol = useSettings((state) => state.apiProtocol)
+  // 联网搜索是 DeepSeek 官方服务端工具；第三方中转不提供
+  const searchSupported = !apiBase.trim() && apiProtocol === 'anthropic'
+  const [globeTurn, setGlobeTurn] = useState(0)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const togglesRef = useRef<HTMLDivElement>(null)
@@ -226,15 +231,27 @@ const Input = ({ sessionId }: { sessionId: string | null }) => {
               <span className={styles.toggleLabel}>{t('thinkingSwitch')}</span>
             </button>
           </Tooltip>
-          <Tooltip content={t('deactivatedSearchTooltip')}>
+          <Tooltip
+            content={searchSupported ? t('deactivatedSearchTooltip') : t('searchUnsupportedTooltip')}
+          >
             <button
               type="button"
-              className={clsx(styles.toggle, search && styles.selected, search && styles.searchActive)}
+              className={clsx(styles.toggle, search && styles.selected)}
               aria-label={t('search')}
               aria-pressed={search}
-              onClick={() => setSearch(!search)}
+              onClick={() => {
+                if (!searchSupported && !search) {
+                  showToast({ key: 'searchUnsupportedToast' })
+                  return
+                }
+                setSearch(!search)
+                setGlobeTurn((value) => value + 1)
+              }}
             >
-              <span className={styles.globeIcon}>
+              <span
+                key={globeTurn}
+                className={clsx(styles.globeIcon, globeTurn > 0 && styles.globeTurn)}
+              >
                 <IconGlobeLanguageOutline14 />
               </span>
               <span className={styles.toggleLabel}>{t('search')}</span>
