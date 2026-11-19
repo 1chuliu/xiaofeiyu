@@ -9,6 +9,7 @@ import {
   IconThinkOutline14,
 } from '../base/icons.js'
 import { setSearch, setThinking, useSettings } from '../../services/settings.js'
+import { isNativePlatform } from '../../platform/index.js'
 import { useIsMobile } from '../../app/viewport.js'
 import { cycleGreeting, sendMessage, stopReply, useChatStore } from '../../services/chat/store.js'
 import {
@@ -64,6 +65,8 @@ const Input = ({ sessionId }: { sessionId: string | null }) => {
     )
   })
   const isMobile = useIsMobile()
+  // 原生壳（APK）里隐藏录音按钮：WebView 麦克风需要额外权限，语音转写也依赖官方接口
+  const native = isNativePlatform()
   const search = useSettings((state) => state.search)
   const apiBase = useSettings((state) => state.apiBase)
   const apiProtocol = useSettings((state) => state.apiProtocol)
@@ -276,19 +279,21 @@ const Input = ({ sessionId }: { sessionId: string | null }) => {
           ) : null}
         </div>
         <div className={styles.right}>
-          <VoiceButton
-            status={voice.status}
-            disabled={!voice.available}
-            seconds={voice.seconds}
-            onClick={() => {
-              if (
-                voice.status !== 'idle' ||
-                (!useChatStore.getState().importingHistory && ensureApiKey())
-              ) {
-                void voice.toggle()
-              }
-            }}
-          />
+          {native ? null : (
+            <VoiceButton
+              status={voice.status}
+              disabled={!voice.available}
+              seconds={voice.seconds}
+              onClick={() => {
+                if (
+                  voice.status !== 'idle' ||
+                  (!useChatStore.getState().importingHistory && ensureApiKey())
+                ) {
+                  void voice.toggle()
+                }
+              }}
+            />
+          )}
           <IconButton
             size="m"
             tone="primary"

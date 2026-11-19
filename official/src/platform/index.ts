@@ -20,6 +20,9 @@ const isNative = (): boolean => {
   return typeof capacitor?.isNativePlatform === 'function' && capacitor.isNativePlatform()
 }
 
+/** 给 UI 用的原生壳判断（例如手机壳里隐藏依赖浏览器权限的录音按钮） */
+export const isNativePlatform = isNative
+
 const isExternalUrl = (url: string): boolean =>
   /^https?:\/\//i.test(url) && !/^https?:\/\/(127\.0\.0\.1|localhost)(:|\/|$)/i.test(url)
 
