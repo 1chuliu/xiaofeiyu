@@ -116,10 +116,12 @@ export const en = {
     'Upload your own tip code (compressed and stored locally only). Add a support link if you have an Afdian account.',
   supportWechatLabel: 'WeChat tip code',
   supportWechatDescription:
-    'Upload your own WeChat tip code (a tip code shows a nickname; a payment code shows your real name).',
+    'Shows the local image by default; tap the thumbnail to enlarge, or upload a replacement.',
   supportAlipayLabel: 'Alipay tip code',
   supportAlipayDescription:
-    'Upload your own Alipay payment/tip code; a payment code shows your real name — blur it first if you prefer.',
+    'Shows the local image by default; tap the thumbnail to enlarge. A payment code shows your real name — blur it first if you prefer.',
+  supportQrPreviewHint: 'Tap to enlarge',
+  supportQrPreviewClose: 'Tap anywhere to close',
   supportUseDefault: 'Restore default',
   supportUploadCode: 'Upload image',
   supportChangeCode: 'Change image',

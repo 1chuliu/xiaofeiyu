@@ -435,6 +435,7 @@ const SupportQrSetting = ({
   const fileRef = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
   const [failed, setFailed] = useState(false)
+  const [preview, setPreview] = useState<string | null>(null)
 
   const pick = async (file: File | undefined) => {
     if (!file) {
@@ -456,23 +457,31 @@ const SupportQrSetting = ({
   }
 
   return (
-    <SettingCell
-      label={label}
-      description={description}
-      status={null}
-      action={
-        <div className={styles.cardActions}>
-          {value || (fallback && !failed) ? (
-            <img
-              key={value || fallback}
-              className={styles.backgroundPreview}
-              src={value || fallback}
-              alt=""
-              onError={() => setFailed(true)}
-            />
-          ) : (
-            <div className={styles.qrPlaceholder}>{t('supportNoImage')}</div>
-          )}
+    <>
+      <SettingCell
+        label={label}
+        description={description}
+        status={null}
+        action={
+          <div className={styles.cardActions}>
+            {value || (fallback && !failed) ? (
+              <button
+                type="button"
+                className={styles.qrPreviewButton}
+                aria-label={t('supportQrPreviewHint')}
+                onClick={() => setPreview(value || fallback || '')}
+              >
+                <img
+                  key={value || fallback}
+                  className={styles.qrPreview}
+                  src={value || fallback}
+                  alt=""
+                  onError={() => setFailed(true)}
+                />
+              </button>
+            ) : (
+              <div className={styles.qrPlaceholder}>{t('supportNoImage')}</div>
+            )}
           <Button
             variant="outlined"
             size="m"
@@ -504,7 +513,19 @@ const SupportQrSetting = ({
           />
         </div>
       }
-    />
+      />
+      {preview ? (
+        <div
+          className={styles.qrOverlay}
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setPreview(null)}
+        >
+          <img className={styles.qrLarge} src={preview} alt="" />
+          <div className={styles.qrOverlayHint}>{t('supportQrPreviewClose')}</div>
+        </div>
+      ) : null}
+    </>
   )
 }
 

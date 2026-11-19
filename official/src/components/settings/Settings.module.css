@@ -723,3 +723,49 @@
     max-width: 100%;
   }
 }
+/* 赞赏码缩略图：方形、可点击放大 */
+.qrPreviewButton {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.qrPreview {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.qrOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+  cursor: zoom-out;
+}
+
+.qrLarge {
+  max-width: min(86vw, 520px);
+  max-height: 70vh;
+  padding: 12px;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.qrOverlayHint {
+  color: #ffffff;
+  font-size: 13px;
+  opacity: 0.85;
+}
