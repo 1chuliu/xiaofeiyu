@@ -1,5 +1,7 @@
 # 小肥鱼 · 同人写作助手
 
+> 仓库：<https://github.com/1chuliu/xiaofeiyu> · 官网页：<https://1chuliu.github.io/xiaofeiyu/>
+
 给写同人文的人用的本地客户端：**填自己的 API Key**，模型能力走 DeepSeek 开放平台，
 不跟官方网页端抢算力、不受每日额度与高峰排队影响；界面是官方开源的 chat-demo 本地构建版。
 
