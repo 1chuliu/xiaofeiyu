@@ -1,5 +1,7 @@
-/** 关于页常量：版本号与打赏说明（联系方式等个人配置不写进仓库，见 local-config.json） */
+/** 版本信息：检查更新用的清单地址与当前版本号 */
 export const APP_VERSION = '1.0.0'
+export const APP_VERSION_CODE = 1
+export const UPDATE_MANIFEST_URL = 'https://1chuliu.github.io/xiaofeiyu/version.json'
 
 export const SUPPORT_NOTE =
   '打赏完全自愿，不影响任何功能；如果小肥鱼帮到了你，请作者喝杯奶茶就好。'

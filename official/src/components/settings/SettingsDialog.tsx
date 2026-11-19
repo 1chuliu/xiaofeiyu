@@ -76,6 +76,7 @@ import {
 import { WRITING_PRESETS } from '../../services/writing/presets.js'
 import { copyText } from '../../utils/clipboard.js'
 import { APP_VERSION } from '../../services/about.js'
+import { checkForUpdates, type UpdateInfo } from '../../services/updateCheck.js'
 import { useLocalConfig } from '../../services/localConfig.js'
 import {
   DEFAULT_PROMPT_BLOCKS,
@@ -532,6 +533,10 @@ const SupportQrSetting = ({
 /** 关于 / 打赏 / 反馈：全部本地展示，不接支付 */
 const AboutSettings = () => {
   const t = useTranslate()
+  const [updateState, setUpdateState] = useState<'idle' | 'checking' | 'latest' | 'available' | 'error'>(
+    'idle'
+  )
+  const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null)
   const supportTipCode = useSettings((state) => state.supportTipCode)
   const supportTipCodeAlipay = useSettings((state) => state.supportTipCodeAlipay)
   const supportLink = useSettings((state) => state.supportLink)
@@ -552,14 +557,75 @@ const AboutSettings = () => {
     }
   }
 
+  const handleCheckUpdate = async () => {
+    setUpdateState('checking')
+    try {
+      const info = await checkForUpdates()
+      setUpdateInfo(info)
+      setUpdateState(info.available ? 'available' : 'latest')
+      showToast({
+        key: info.available ? 'updateAvailable' : 'alreadyLatest',
+        params: info.latest ? { version: info.latest } : undefined,
+      })
+    } catch (error) {
+      setUpdateState('error')
+      showToast({
+        key: 'updateFailed',
+        type: 'error',
+        params: { message: error instanceof Error ? error.message : String(error) },
+      })
+    }
+  }
+
   return (
     <>
       <SettingCell
         label={t('aboutVersionLabel')}
         description=""
         status={null}
-        action={<span className={styles.description}>小肥鱼 v{APP_VERSION}</span>}
+        action={
+          <div className={styles.cardActions}>
+            <span className={styles.description}>小肥鱼 v{APP_VERSION}</span>
+            <Button
+              variant="outlined"
+              size="m"
+              disabled={updateState === 'checking'}
+              onClick={() => void handleCheckUpdate()}
+            >
+              {updateState === 'checking' ? t('checkingUpdate') : t('checkUpdate')}
+            </Button>
+          </div>
+        }
       />
+      {updateState === 'available' && updateInfo?.apkUrl ? (
+        <SettingCell
+          label={t('updateAvailableLabel')}
+          description={updateInfo.notes ?? ''}
+          status={null}
+          action={
+            <div className={styles.cardActions}>
+              <Button
+                variant="primary"
+                size="m"
+                onClick={() => window.open(updateInfo.apkUrl, '_blank', 'noopener,noreferrer')}
+              >
+                {t('downloadUpdate')}
+              </Button>
+              {updateInfo.lanzouUrl ? (
+                <Button
+                  variant="outlined"
+                  size="m"
+                  onClick={() =>
+                    window.open(updateInfo.lanzouUrl, '_blank', 'noopener,noreferrer')
+                  }
+                >
+                  {t('downloadUpdateLanzou')}
+                </Button>
+              ) : null}
+            </div>
+          }
+        />
+      ) : null}
       <SettingCell
         label={t('aboutThanksLabel')}
         description=""
