@@ -75,7 +75,7 @@ import {
 } from '../../services/settings.js'
 import { WRITING_PRESETS } from '../../services/writing/presets.js'
 import { copyText } from '../../utils/clipboard.js'
-import { APP_VERSION, SUPPORT_NOTE } from '../../services/about.js'
+import { APP_VERSION } from '../../services/about.js'
 import { useLocalConfig } from '../../services/localConfig.js'
 import {
   DEFAULT_PROMPT_BLOCKS,
@@ -568,27 +568,24 @@ const AboutSettings = () => {
       />
       <SettingCell
         label={t('supportLabel')}
-        description={t('supportDescription')}
+        description=""
         status={null}
         action={null}
       />
       <SupportQrSetting
         label={t('supportWechatLabel')}
-        description={t('supportWechatDescription')}
+        description=""
         value={supportTipCode}
         fallback="/support/wechat.png"
         onChange={setSupportTipCode}
       />
       <SupportQrSetting
         label={t('supportAlipayLabel')}
-        description={t('supportAlipayDescription')}
+        description=""
         value={supportTipCodeAlipay}
         fallback="/support/alipay.png"
         onChange={setSupportTipCodeAlipay}
       />
-      <div className={styles.description} style={{ marginTop: 8 }}>
-        {t('supportNameNote')}
-      </div>
       <div className={styles.promptBlock}>
         <div className={styles.label}>{t('supportLinkLabel')}</div>
         <input
@@ -615,12 +612,10 @@ const AboutSettings = () => {
             </Button>
           </div>
         ) : null}
-        <div className={styles.description}>{t('supportLinkHint')}</div>
-        <div className={styles.description}>{SUPPORT_NOTE}</div>
       </div>
       <SettingCell
         label={t('feedbackLabel')}
-        description={feedback.length ? t('feedbackDescription') : t('feedbackUnconfigured')}
+        description=""
         status={null}
         action={
           feedback.length ? (
@@ -1430,9 +1425,9 @@ const AdvancedSettings = () => {
           <Select
             ariaLabel={t('contextBudgetLabel')}
             value={String(contextBudget)}
-            options={[8000, 16000, 32000, 64000, 128000].map((tokens) => ({
+            options={[8000, 16000, 32000, 64000, 128000, 256000, 512000, 1000000].map((tokens) => ({
               value: String(tokens),
-              label: `${tokens / 1000}k`,
+              label: tokens >= 1000000 ? `${tokens / 1000000}M` : `${tokens / 1000}k`,
             }))}
             onChange={(value) => setContextBudget(Number(value))}
           />

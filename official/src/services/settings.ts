@@ -441,7 +441,7 @@ export const useSettings = create<Settings>(() => ({
   groupReplyLength: [0, 40, 60, 80, 120].includes(Number(read(KEYS.groupReplyLength)))
     ? Number(read(KEYS.groupReplyLength))
     : 0,
-  contextBudget: [8000, 16000, 32000, 64000, 128000].includes(Number(read(KEYS.contextBudget)))
+  contextBudget: [8000, 16000, 32000, 64000, 128000, 256000, 512000, 1000000].includes(Number(read(KEYS.contextBudget)))
     ? Number(read(KEYS.contextBudget))
     : 32000,
   streamRetryCount: [0, 2, 5, 10].includes(Number(read(KEYS.streamRetryCount)))
