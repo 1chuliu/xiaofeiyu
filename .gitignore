@@ -1,0 +1,11 @@
+node_modules/
+official/node_modules/
+official/dist/
+.tmp/
+.artifacts/
+*.log
+.DS_Store
+Thumbs.dbimport-text-only.zip
+downloads/
+local-config.json
+official/assets/support/

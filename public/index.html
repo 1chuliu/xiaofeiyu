@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>小肥鱼 - 同人写作助手</title>
+<meta name="description" content="小肥鱼：同人写作助手，填写你自己的 DeepSeek 开放平台 API Key 即可使用，不受网页端/App 端额度影响。" />
+<meta name="theme-color" content="#4d6bfe" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" onerror="window.__katexCssFail=true" />
+</head>
+<body>
+
+<!-- ===================== 图标 ===================== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="m11 11 8 8M17 17l2-2M15 15l2-2"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 6"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.8Z"/><path d="M18.5 15l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 4.6 15H4.5a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 11.2 4.4V4.5a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.1a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.4.9Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V9M7 13l5-5 5 5M5 4h14"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></symbol>
+  <symbol id="i-whale" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 27c0-6 4.5-10.5 11-11.5 6.5-1 10.5 1.2 13 3.8 1.4 1.5 2.2 3.3 1.8 5.2 0 2.9-2 5.4-5.6 6.9-3.6 1.5-8.8 2-12.4 1-3.4-1-6.6-2.9-7.8-5.4Z"/><path d="M18.5 16.2c-1.2-2-2.6-3.3-4-4"/><path d="M22 16c.6-2.2 1.7-4 3.1-5.2"/><circle cx="13.6" cy="10.8" r="1" fill="currentColor" stroke="none"/><circle cx="24.6" cy="9.2" r="1" fill="currentColor" stroke="none"/><circle cx="27.6" cy="11.8" r="1" fill="currentColor" stroke="none"/><path d="M34.8 25.2l6.2-.9 3.4-.6"/><path d="M44.4 23.7l1.6 1.9v1.8l-1.6 1.9"/><path d="M44.4 29.3l-3.4-.5-6.2-.6"/><path d="M23 19c1.5-.4 2.8-.3 3.9.2"/><path d="M13.4 29c1.8 1.7 4 2.1 5.8 1.6" stroke-width="1.7"/><path d="M15.6 32.1c1.7 1 3.5 1.1 5 .7" stroke-width="1.5"/><circle cx="19" cy="25.8" r="1.1" fill="currentColor" stroke="none"/></g><ellipse cx="16.6" cy="29.6" rx="2.6" ry="1.3" fill="#ff8a5b" opacity=".45" stroke="none"/><circle cx="39.6" cy="13.6" r="1.4" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="42.4" cy="10" r=".8" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 7.6l.7 1.7 1.7.7-1.7.7-.7 1.7-.7-1.7-1.7-.7 1.7-.7z" fill="none" stroke="#ff8a5b" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <!-- ===================== 侧边栏 ===================== -->
+  <aside class="sidebar" id="sidebar" aria-label="对话列表">
+    <div class="sidebar__top">
+      <div class="brand">
+        <span class="brand__logo" aria-hidden="true"><svg class="icon icon--logo"><use href="#i-whale"/></svg></span>
+        <span class="brand__text">小肥鱼</span>
+      </div>
+      <button class="iconbtn sidebar__collapse" id="btnCollapse" title="收起侧边栏（Ctrl+B）" aria-label="收起侧边栏">
+        <svg class="icon"><use href="#i-panel"/></svg>
+      </button>
+    </div>
+
+    <div class="sidebar__actions">
+      <button class="btn-new" id="btnNewChat">
+        <svg class="icon"><use href="#i-plus"/></svg><span>开启新对话</span>
+      </button>
+      <label class="search">
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input id="inputSearch" type="search" placeholder="搜索对话" autocomplete="off" />
+      </label>
+    </div>
+
+    <nav class="convnav" id="convNav" aria-label="历史对话"></nav>
+
+    <div class="sidebar__footer">
+      <a class="sidebar__link" href="https://platform.deepseek.com/" target="_blank" rel="noopener noreferrer" title="前往 DeepSeek 开放平台">
+        <svg class="icon"><use href="#i-external"/></svg><span>DeepSeek 开放平台</span>
+      </a>
+      <div class="sidebar__user">
+        <button class="usercard" id="btnSettings" title="设置">
+          <span class="usercard__avatar" id="avatar">D</span>
+          <span class="usercard__meta">
+            <span class="usercard__name">我的账号</span>
+            <span class="usercard__state" id="keyState">未填写 API Key</span>
+          </span>
+          <svg class="icon"><use href="#i-settings"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <!-- ===================== 主区域 ===================== -->
+  <main class="main" id="main">
+    <header class="topbar">
+      <button class="iconbtn topbar__menu" id="btnMenu" title="打开侧边栏（Ctrl+B）" aria-label="打开侧边栏">
+        <svg class="icon"><use href="#i-panel"/></svg>
+      </button>
+      <div class="topbar__title">
+        <button class="modelpick" id="btnModel" aria-haspopup="menu" aria-expanded="false">
+          <span class="modelpick__dot" aria-hidden="true"></span>
+          <span id="modelLabel">DeepSeek-V4.1 Flash</span>
+          <svg class="icon"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="menu" id="modelMenu" role="menu" hidden>
+          <button class="menu__item" role="menuitemradio" data-model="deepseek-flash">
+            <span class="menu__main">DeepSeek-V4.1 Flash<span class="tag">通用</span></span>
+            <span class="menu__desc">快速回答日常问题、写作与代码</span>
+          </button>
+          <button class="menu__item" role="menuitemradio" data-model="deepseek-v4-pro">
+            <span class="menu__main">DeepSeek-V4 Pro<span class="tag tag--think">Pro</span></span>
+            <span class="menu__desc">复杂推理、长文与更难的任务</span>
+          </button>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <button class="iconbtn" id="btnTheme" title="切换主题" aria-label="切换主题"><svg class="icon"><use href="#i-moon"/></svg></button>
+        <button class="iconbtn" id="btnNewChatTop" title="开启新对话" aria-label="开启新对话"><svg class="icon"><use href="#i-plus"/></svg></button>
+      </div>
+    </header>
+
+    <div class="chat" id="chatScroll">
+      <section class="welcome" id="welcome">
+        <div class="welcome__logo" aria-hidden="true"><svg class="icon icon--logo"><use href="#i-whale"/></svg></div>
+        <h1 class="welcome__title">你好呀，今天想写谁的故事？</h1>
+        <p class="welcome__sub">同人续写、角色口吻、润色与大纲，用自己的 DeepSeek 开放平台 API Key，不再受网页端 / App 端额度限制。</p>
+        <div class="suggest" id="suggestGrid">
+          <button class="suggest__card" data-prompt="帮我写一段同人：雨夜重逢，暗恋多年，文风克制，别煽情">
+            <span class="suggest__icon">🌧️</span><span>雨夜重逢的暗恋续写</span>
+          </button>
+          <button class="suggest__card" data-prompt="以角色的口吻和我对话：性格傲娇、嘴硬心软，自称“我”，称呼对方全名">
+            <span class="suggest__icon">💬</span><span>让角色保持人设说话</span>
+          </button>
+          <button class="suggest__card" data-prompt="把下面这段草稿润色得更有画面感，保留原意和我的文风：">
+            <span class="suggest__icon">🖋️</span><span>润色草稿，增强画面感</span>
+          </button>
+          <button class="suggest__card" data-prompt="帮我把这个故事拆成 8 章大纲，每章写清冲突、推进和情绪落点">
+            <span class="suggest__icon">📖</span><span>把故事拆成分章大纲</span>
+          </button>
+        </div>
+        <div class="welcome__extra">
+          <button class="welcome__demo" id="btnDemo">
+            <svg class="icon"><use href="#i-sparkles"/></svg>还没有 Key？先看看示例对话
+          </button>
+        </div>
+        <p class="welcome__hint">
+          对话由 <a href="https://platform.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek 开放平台</a> API 提供 · Key 仅保存在你的设备上
+        </p>
+      </section>
+      <div class="messages" id="messageList" role="log" aria-live="polite"></div>
+    </div>
+
+    <div class="composer">
+      <div class="notice" id="keyNotice" hidden>
+        <svg class="icon"><use href="#i-key"/></svg>
+        <span>还没有填写 API Key，对话无法发送。</span>
+        <button class="notice__btn" id="btnOpenPlatform">
+          去开放平台获取 <svg class="icon"><use href="#i-external"/></svg>
+        </button>
+        <button class="notice__btn notice__btn--ghost" id="btnKeyNow">立即填写</button>
+      </div>
+      <div class="composer__box" id="composerBox">
+        <div class="attachments" id="attachmentBar" hidden></div>
+        <textarea id="input" rows="1" placeholder="写点什么，例如：让他俩在雨夜重逢" spellcheck="false"></textarea>
+        <div class="composer__bar">
+          <div class="composer__left">
+            <button class="chip" id="btnAttach" title="上传文本文件（.txt/.md/.csv/代码等）">
+              <svg class="icon"><use href="#i-paperclip"/></svg><span>上传文件</span>
+            </button>
+            <input type="file" id="fileInput" multiple hidden
+                   accept=".txt,.md,.markdown,.csv,.tsv,.json,.log,.yaml,.yml,.py,.js,.ts,.jsx,.tsx,.java,.c,.h,.cpp,.cs,.go,.rs,.rb,.php,.sh,.sql,.html,.css,.xml,.ini,.toml" />
+            <button class="chip chip--think" id="btnThink" aria-pressed="true" title="开启 / 关闭思考模式">
+              <svg class="icon"><use href="#i-sparkles"/></svg><span>深度思考</span>
+            </button>
+          </div>
+          <div class="composer__right">
+            <span class="keyhint" id="keyHint" hidden title="未填写 API Key"><svg class="icon"><use href="#i-key"/></svg></span>
+            <button class="send" id="btnSend" title="发送（Enter）" aria-label="发送">
+              <svg class="icon"><use href="#i-arrow-up"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="composer__foot">按 <kbd>Enter</kbd> 发送，<kbd>Shift</kbd>+<kbd>Enter</kbd> 换行</p>
+    </div>
+  </main>
+</div>
+
+<!-- ===================== 设置 ===================== -->
+<div class="modal" id="settingsModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <header class="modal__head">
+      <h2 id="settingsTitle">设置</h2>
+      <button class="iconbtn" data-close aria-label="关闭"><svg class="icon"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="modal__body">
+      <section class="fieldset">
+        <h3 class="fieldset__title">DeepSeek 开放平台</h3>
+        <p class="fieldset__desc">
+          客户端使用你自己的 API Key 调用
+          <a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek 开放平台</a>
+          ，按 token 计费，不受网页端 / App 端每日额度与高峰限流影响。
+        </p>
+        <a class="platformcard" href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener noreferrer">
+          <span class="platformcard__icon"><svg class="icon"><use href="#i-key"/></svg></span>
+          <span class="platformcard__text">
+            <strong>前往开放平台创建 API Key</strong>
+            <small>platform.deepseek.com/api_keys · 新用户通常有免费额度</small>
+          </span>
+          <svg class="icon"><use href="#i-external"/></svg>
+        </a>
+
+        <label class="label" for="inputKey">API Key</label>
+        <div class="inputrow">
+          <input id="inputKey" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" />
+          <button class="iconbtn" id="btnRevealKey" title="显示 / 隐藏"><svg class="icon"><use href="#i-key"/></svg></button>
+        </div>
+        <p class="hint">密钥仅保存在本机浏览器（勾选“记住”后写入 localStorage），不会上传到除 DeepSeek 官方接口以外的任何服务器。</p>
+        <label class="checkline"><input type="checkbox" id="chkRemember" checked /><span>在这台设备上记住密钥</span></label>
+        <label class="checkline"><input type="checkbox" id="chkProxy" /><span>通过本地服务转发请求（浏览器跨域失败时使用，需运行 <code>node server.mjs</code>）</span></label>
+
+        <label class="label" for="inputBase">API 地址</label>
+        <div class="inputrow">
+          <input id="inputBase" type="url" placeholder="https://api.deepseek.com" spellcheck="false" />
+          <button class="btn btn--ghost" id="btnTestKey">测试连接</button>
+        </div>
+        <p class="hint" id="testResult" hidden></p>
+      </section>
+
+      <section class="fieldset">
+        <h3 class="fieldset__title">对话</h3>
+        <div class="two-col">
+          <div>
+            <label class="label" for="selectModel">默认模型</label>
+            <select id="selectModel" class="select">
+              <option value="deepseek-flash">DeepSeek-V4.1 Flash（deepseek-flash）</option>
+              <option value="deepseek-v4-pro">DeepSeek-V4 Pro（deepseek-v4-pro）</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="selectTheme">外观</label>
+            <select id="selectTheme" class="select">
+              <option value="light">浅色</option>
+              <option value="dark">深色</option>
+              <option value="auto">跟随系统</option>
+            </select>
+          </div>
+        </div>
+        <label class="label" for="inputSystem">自定义系统提示词（可选）</label>
+        <textarea id="inputSystem" class="textarea" rows="2" placeholder="例如：回答时先给结论，再给理由。"></textarea>
+        <label class="checkline"><input type="checkbox" id="chkThinking" checked /><span>默认开启深度思考（思考模式，会先输出推理过程）</span></label>
+        <div class="two-col">
+          <div>
+            <label class="label" for="inputTemp">温度（temperature）</label>
+            <input id="inputTemp" class="select" type="number" min="0" max="2" step="0.1" placeholder="留空用服务端默认" />
+          </div>
+          <div>
+            <label class="label" for="inputTopP">Top-P</label>
+            <input id="inputTopP" class="select" type="number" min="0" max="1" step="0.05" placeholder="留空用服务端默认" />
+          </div>
+        </div>
+        <label class="label" for="inputModelCustom">模型 ID（自定义，可选）</label>
+        <input id="inputModelCustom" class="select" type="text" placeholder="例如 deepseek-v4.1-flash-1017；留空用上面的默认模型" spellcheck="false" />
+        <p class="hint">填了就用它；配合第三方 OpenAI 兼容端点时必填。</p>
+        <p class="hint">注意：思考模式下服务端不支持温度；开启联网/安全审核时，温度和 Top-P 也会被忽略。</p>
+        <label class="checkline"><input type="checkbox" id="chkUsage" /><span>在回答下方显示 token 用量</span></label>
+      </section>
+
+      <section class="fieldset">
+        <h3 class="fieldset__title">数据</h3>
+        <div class="btnrow">
+          <button class="btn btn--ghost" id="btnExport"><svg class="icon"><use href="#i-download"/></svg>导出全部对话</button>
+          <button class="btn btn--ghost" id="btnImport"><svg class="icon"><use href="#i-upload"/></svg>导入对话</button>
+          <button class="btn btn--danger" id="btnClearAll"><svg class="icon"><use href="#i-trash"/></svg>清空全部对话</button>
+        </div>
+        <input type="file" id="importFile" accept="application/json,.json" hidden />
+      </section>
+
+      <section class="fieldset fieldset--about">
+        <h3 class="fieldset__title">关于</h3>
+        <p class="fieldset__desc">
+          小肥鱼是非官方个人工具，与杭州深度求索人工智能基础技术研究有限公司无隶属关系；
+          模型能力由 DeepSeek 开放平台 API 提供，DeepSeek 名称与模型归其所有。仅供个人自用。
+        </p>
+        <p class="fieldset__desc">
+          官方入口：<a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">chat.deepseek.com</a> ·
+          <a href="https://platform.deepseek.com/" target="_blank" rel="noopener noreferrer">开放平台</a> ·
+          <a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener noreferrer">价格说明</a>
+        </p>
+      </section>
+    </div>
+    <footer class="modal__foot">
+      <button class="btn btn--ghost" data-close>取消</button>
+      <button class="btn btn--primary" id="btnSaveSettings">保存</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ===================== 确认弹窗 ===================== -->
+<div class="modal modal--sm" id="confirmModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <header class="modal__head"><h2 id="confirmTitle">确认</h2></header>
+    <div class="modal__body"><p class="confirm__text" id="confirmText"></p></div>
+    <footer class="modal__foot">
+      <button class="btn btn--ghost" data-close>取消</button>
+      <button class="btn btn--danger" id="btnConfirmOk">确定</button>
+    </footer>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" defer crossorigin="anonymous" onerror="window.__katexFail=true"></script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "xiaofeiyu",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "小肥鱼 · 同人写作助手：官方 chat-demo 本地构建 + 写作预设 / 会话置顶 / 轻量版",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs --port 8787",
+    "setup": "npm install --prefix official && node scripts/build-official.mjs",
+    "build:app": "node scripts/build-official.mjs",
+    "test": "node tests/run.mjs && node tests/dom-e2e.mjs",
+    "test:unit": "node tests/run.mjs",
+    "test:dom": "node tests/dom-e2e.mjs",
+    "check:css": "node scripts/check-classes.mjs",
+    "check:refs": "node scripts/check-refs.mjs",
+    "check": "node scripts/check-classes.mjs && node scripts/check-refs.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "icons": "python scripts/make-icons.py"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "fake-indexeddb": "^6.2.8",
+    "jsdom": "^26.1.0"
+  }
+}
