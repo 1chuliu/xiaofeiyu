@@ -1,6 +1,6 @@
 /** 版本信息：检查更新用的清单地址与当前版本号 */
-export const APP_VERSION = '1.0.0'
-export const APP_VERSION_CODE = 1
+export const APP_VERSION = '1.0.1'
+export const APP_VERSION_CODE = 2
 export const UPDATE_MANIFEST_URL = 'https://1chuliu.github.io/xiaofeiyu/version.json'
 
 export const SUPPORT_NOTE =
