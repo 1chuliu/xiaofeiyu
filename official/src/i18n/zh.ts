@@ -296,8 +296,7 @@ export const zh = {
   modelIdLabel: '模型 ID',
   modelIdDescription: '默认 deepseek-flash；可填官方支持的其他模型名（如 deepseek-v4-pro）',
   contextBudgetLabel: '上下文预算',
-  contextBudgetDescription:
-    '超出预算时自动丢弃最旧的对话轮次（system、记忆和最近提问始终保留），避免长会话超窗口或烧 token',
+  contextBudgetDescription: '超出预算时丢弃最旧的对话轮次',
   streamRetryLabel: '断线重连',
   streamRetryDescription:
     '流式中断 / 网关 5xx·429 / 空闲超时时自动重连（ZCode 默认 10 次、基础退避 2 秒）',

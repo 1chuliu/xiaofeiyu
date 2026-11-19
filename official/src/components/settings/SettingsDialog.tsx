@@ -179,7 +179,7 @@ const SettingsContent = () => {
             <>
               <SettingCell
                 label={t('platformEntryLabel')}
-                description={t('platformEntryDescription')}
+                description=""
                 status={null}
                 action={
                   <Button
@@ -353,7 +353,7 @@ const BackgroundSetting = () => {
   return (
     <SettingCell
       label={t('settingsBackground')}
-      description={t('settingsBackgroundDescription')}
+      description=""
       status={null}
       action={
         <div className={styles.cardActions}>
@@ -556,13 +556,13 @@ const AboutSettings = () => {
     <>
       <SettingCell
         label={t('aboutVersionLabel')}
-        description={t('aboutLicense')}
+        description=""
         status={null}
         action={<span className={styles.description}>小肥鱼 v{APP_VERSION}</span>}
       />
       <SettingCell
         label={t('aboutThanksLabel')}
-        description={t('aboutThanks')}
+        description=""
         status={null}
         action={null}
       />
@@ -673,10 +673,9 @@ const PromptSettings = () => {
 
   return (
     <>
-      <div className={styles.description}>{t('promptBlocksDescription')}</div>
       <SettingCell
         label={t('promptTemplatesLabel')}
-        description={t('promptTemplatesDescription')}
+        description=""
         status={null}
         action={
           <div className={styles.cardActions}>
@@ -887,7 +886,7 @@ const CharacterSettings = () => {
       <div className={styles.description}>{t('characterSectionDescription')}</div>
       <SettingCell
         label={t('userNameLabel')}
-        description={t('userNameDescription')}
+        description=""
         status={null}
         action={
           <input
@@ -911,7 +910,7 @@ const CharacterSettings = () => {
       </div>
       <SettingCell
         label={t('characterCardLabel')}
-        description={t('characterCardDescription')}
+        description=""
         status={null}
         action={
           <div className={styles.cardActions}>
@@ -1086,7 +1085,7 @@ const CharacterSettings = () => {
       </div>
       <SettingCell
         label={t('characterAdvancedLabel')}
-        description={t('characterAdvancedDescription')}
+        description=""
         status={null}
         action={
           <Button
@@ -1153,7 +1152,7 @@ const CharacterSettings = () => {
       </div>
       <SettingCell
         label={t('autoMemoryToggleLabel')}
-        description={t('autoMemoryToggleDescription')}
+        description=""
         status={null}
         action={
           <div className={styles.cardActions}>
@@ -1179,7 +1178,7 @@ const CharacterSettings = () => {
       />
       <SettingCell
         label={t('memoryRecallLabel')}
-        description={t('memoryRecallDescription')}
+        description=""
         status={null}
         action={
           <div className={styles.cardActions}>
@@ -1467,7 +1466,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('modelExtraLabel')}
-        description={t('modelExtraDescription')}
+        description=""
         status={null}
         action={
           <input
@@ -1509,7 +1508,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('apiProxyLabel')}
-        description={t('apiProxyDescription')}
+        description=""
         status={null}
         action={
           <input
@@ -1540,7 +1539,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('advancedEffortLabel')}
-        description={t('advancedEffortDescription')}
+        description=""
         status={null}
         action={
           <Select
@@ -1557,7 +1556,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('advancedMaxTokensLabel')}
-        description={t('advancedMaxTokensDescription')}
+        description=""
         status={null}
         action={
           <NumberField
@@ -1572,7 +1571,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('advancedTemperatureLabel')}
-        description={t('advancedTemperatureDescription')}
+        description=""
         status={null}
         action={
           <NumberField
@@ -1588,7 +1587,7 @@ const AdvancedSettings = () => {
       />
       <SettingCell
         label={t('advancedTopPLabel')}
-        description={t('advancedTopPDescription')}
+        description=""
         status={null}
         action={
           <NumberField
@@ -1620,7 +1619,7 @@ const WritingSettings = () => {
     <>
       <SettingCell
         label={t('writingPresetLabel')}
-        description={t('writingPresetDescription')}
+        description=""
         status={null}
         action={
           <Select
@@ -1640,7 +1639,6 @@ const WritingSettings = () => {
           placeholder={t('writingProfilePlaceholder')}
           onChange={(event) => setWritingProfile(event.target.value)}
         />
-        <div className={styles.description}>{t('writingProfileDescription')}</div>
       </div>
       <div className={styles.promptBlock}>
         <div className={styles.label}>{t('writingPromptLabel')}</div>
@@ -1654,7 +1652,6 @@ const WritingSettings = () => {
             setCustomPrompt(event.target.value)
           }}
         />
-        <div className={styles.description}>{t('writingPromptDescription')}</div>
       </div>
     </>
   )
@@ -1960,7 +1957,7 @@ const ExportHistory = ({ disabled }: { disabled: boolean }) => {
   return (
     <SettingCell
       label={t('exportAllLabel')}
-      description={t('historyExportDescription')}
+      description=""
       status={status}
       action={
         <Button

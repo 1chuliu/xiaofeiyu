@@ -331,8 +331,7 @@ export const en = {
     'Defaults to deepseek-flash; you can enter any model name supported by the API (e.g. deepseek-v4-pro).',
   modelIdPlaceholder: 'deepseek-flash',
   contextBudgetLabel: 'Context budget',
-  contextBudgetDescription:
-    'Trim the oldest rounds when the conversation exceeds this budget. System prompt, memory and the latest question are always kept.',
+  contextBudgetDescription: 'Drop the oldest turns once the budget is exceeded.',
   streamRetryLabel: 'Auto-reconnect',
   streamRetryDescription:
     'Reconnect on stream interruptions, 5xx/429 responses or idle timeouts. ZCode defaults to 10 retries with a 2s base backoff.',
