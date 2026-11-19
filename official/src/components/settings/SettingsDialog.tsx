@@ -1496,6 +1496,24 @@ const AdvancedSettings = () => {
         }
       />
       <SettingCell
+        label={t('officialApiLabel')}
+        description={t('officialApiDescription')}
+        status={null}
+        action={
+          <Button
+            variant="outlined"
+            size="m"
+            onClick={() => {
+              setApiBase('')
+              setApiProtocol('anthropic')
+              showToast({ key: 'officialApiSwitched' })
+            }}
+          >
+            {t('officialApiAction')}
+          </Button>
+        }
+      />
+      <SettingCell
         label={t('advancedEffortLabel')}
         description={t('advancedEffortDescription')}
         status={null}

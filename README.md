@@ -152,6 +152,7 @@ $env:PROXY_ALLOWED_HOSTS="intern-ai.org.cn"; node server.mjs
 | 模型 ID / 多模型对比 | 如 `deepseek-v4.1-flash-1017`，第二个框填 `qwen3.8-27b` 即可多模型对比 |
 
 > 说明：OpenAI 协议下不支持官方专有的「联网工具 / 读取链接 / safety_check」参数（会自动忽略）；
+> **联网搜索 / 读链接只有 DeepSeek 官方 API 提供**（服务端工具），第三方网关不可用；设置 → 模型参数 有「切回官方」按钮。
 > Anthropic 协议接第三方时会自动去掉 `safety_check`、把 `latest_reminder` 并进 system、清空服务端工具。
 > 第三方网关普遍**没有 Files API**：**图片**会自动压缩成 base64 内联发送（Anthropic `base64` 源 / OpenAI `image_url`），
 > 文档、PDF 等其他附件仍会提示不支持。自动标题在 OpenAI 协议下用额外一次小请求生成；想用官方专有能力请切回 Anthropic 协议 + 官方地址。

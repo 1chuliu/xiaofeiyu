@@ -424,7 +424,12 @@ export const en = {
   searchUnsupportedTooltip:
     'Web search is a DeepSeek server-side tool and is not available on third-party endpoints.',
   searchUnsupportedToast:
-    'Current endpoint is third-party; the official web-search tool is unavailable. Switch to the official API to use it.',
+    'Web search needs the official DeepSeek API. Open Settings → Model and click "Switch to official".',
+  officialApiLabel: 'Official API',
+  officialApiDescription:
+    'Web search and link reading are only provided by the official DeepSeek API, not third-party endpoints.',
+  officialApiAction: 'Switch to official',
+  officialApiSwitched: 'Switched to the official API (web tools available).',
   uploadFile: 'Upload files',
   chatInputStopButtonTooltip: 'Stop',
   uploadMaxMBSize: 'File exceeds the size limit ({size} MB). Please adjust and try again.',
